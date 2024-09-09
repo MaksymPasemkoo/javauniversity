@@ -33,9 +33,8 @@ public class CountInSubstring {
         int count = 0;
         for (String[] row : matrix) {
             for (String element : row) {
-                String[] strings = element.split("");
-                for (String string : strings) {
-                    if(string.equals(substring)){
+                for (int i = 0; i <= element.length() - substring.length(); i++) {
+                    if (element.startsWith(substring, i)) {
                         count++;
                     }
                 }
