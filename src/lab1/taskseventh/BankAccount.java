@@ -59,25 +59,25 @@ public class BankAccount {
 
         double commission = calculateCommission(targetAccount);
         double finalAmount = amount - (amount * commission);
-        double convertedAmount = bank.convertCurrency(finalAmount, this.currency, targetAccount.getCurrency());
+        double convertedAmount = bank.convertCurrency(finalAmount, currency, targetAccount.getCurrency());
 
-        this.withdraw(amount);
+        withdraw(amount);
         targetAccount.deposit(convertedAmount);
 
-        System.out.println("Transfer completed: " + amount + " " + this.currency + " -> "
+        System.out.println("Transfer completed: " + amount + " " + currency + " -> "
                 + convertedAmount + " " + targetAccount.getCurrency()
                 + " with a commission of " + (commission * 100) + "%.");
     }
 
     private double calculateCommission(BankAccount targetAccount) {
-        if (this.owner.equals(targetAccount.getOwner())) {
-            if (this.bank.getName().equals(targetAccount.getBank().getName())) {
+        if (owner.equals(targetAccount.getOwner())) {
+            if (bank.getName().equals(targetAccount.getBank().getName())) {
                 return 0.0;
             } else {
                 return 0.02;
             }
         } else {
-            if (this.bank.getName().equals(targetAccount.getBank().getName())) {
+            if (bank.getName().equals(targetAccount.getBank().getName())) {
                 return 0.03;
             } else {
                 return 0.06;

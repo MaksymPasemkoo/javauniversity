@@ -6,7 +6,7 @@ public class ParseExpression {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter expression:");
-        double res = evaluateExpression(scanner.nextLine());
+        final double res = evaluateExpression(scanner.nextLine());
         System.out.println(res);
     }
 
@@ -32,21 +32,18 @@ public class ParseExpression {
 
         String choice = parts[1];
 
-        switch(choice){
-            case "+":
-                return num1 + num2;
-            case "-":
-                return num1 - num2;
-            case "*":
-                return num1 * num2;
-            case "/":
+        return switch (choice) {
+            case "+" -> num1 + num2;
+            case "-" -> num1 - num2;
+            case "*" -> num1 * num2;
+            case "/" -> {
                 if (num2 == 0) {
                     throw new ArithmeticException("Division by zero.");
                 }
-                return num1 / num2;
-            default:
-                throw new IllegalArgumentException("There is no operation like: " + choice);
-        }
+                yield num1 / num2;
+            }
+            default -> throw new IllegalArgumentException("There is no operation like: " + choice);
+        };
     }
 }
 

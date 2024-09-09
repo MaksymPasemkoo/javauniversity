@@ -8,10 +8,10 @@ public class Main {
 
         System.out.println("Format:100 UAH into USD");
         System.out.println("Enter conversion: ");
-        String input = scanner.nextLine();
+        final String input = scanner.nextLine();
 
         try {
-            double result = converter.convertCurrency(input);
+            final double result = converter.convertCurrency(input);
             System.out.println("Converted amount: " + result);
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());

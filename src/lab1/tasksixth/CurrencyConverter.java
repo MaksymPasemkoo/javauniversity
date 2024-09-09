@@ -23,15 +23,15 @@ public class CurrencyConverter {
             throw new IllegalArgumentException("Invalid format. Use format '100 UAH into USD'.");
         }
 
-        double amount;
+        final double amount;
         try {
             amount = Double.parseDouble(parts[0]);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("The first part must be a number.");
         }
 
-        String fromCurrencyString = parts[1].toUpperCase();
-        String toCurrencyCodeString = parts[3].toUpperCase();
+        final String fromCurrencyString = parts[1].toUpperCase();
+        final String toCurrencyCodeString = parts[3].toUpperCase();
 
         Currency fromCurrency = currencies.get(fromCurrencyString);
         Currency toCurrency = currencies.get(toCurrencyCodeString);
@@ -40,7 +40,7 @@ public class CurrencyConverter {
             throw new IllegalArgumentException("Unknown currency: " + fromCurrencyString + " or " + toCurrencyCodeString);
         }
 
-        double amountInUAH = fromCurrency.convertToUAH(amount);
+        final double amountInUAH = fromCurrency.convertToUAH(amount);
         return toCurrency.convertFromUAH(amountInUAH);
     }
 
