@@ -1,4 +1,4 @@
-package lab1.taskfourth;
+package labfirst.taskfourth;
 
 public class SymbolClass {
     private final char character;

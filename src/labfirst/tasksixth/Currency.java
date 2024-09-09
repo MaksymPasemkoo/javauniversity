@@ -1,4 +1,4 @@
-package lab1.tasksixth;
+package labfirst.tasksixth;
 
 public class Currency {
     private final String name;

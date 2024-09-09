@@ -1,4 +1,4 @@
-package lab1.taskfirst;
+package labfirst.taskfirst;
 
 public class BinaryConvertor {
     public static void main(String[] args) {

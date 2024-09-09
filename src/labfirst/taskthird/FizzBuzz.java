@@ -1,4 +1,4 @@
-package lab1.taskthird;
+package labfirst.taskthird;
 
 
 public class FizzBuzz {

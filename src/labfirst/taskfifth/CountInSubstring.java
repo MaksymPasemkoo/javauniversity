@@ -1,4 +1,4 @@
-package lab1.taskfifth;
+package labfirst.taskfifth;
 
 import java.util.Scanner;
 
@@ -8,8 +8,8 @@ public class CountInSubstring {
         Scanner scanner = new Scanner(System.in);
 
         String[][] matrix = {
-                {"0", "1","0","1"},
-                {"0", "1","0","1"},
+                {"0", "1","0q","1"},
+                {"0", "1","0qq","1"},
                 {"0", "1","0","1"},
                 {"0", "1","0","1"}
         };
@@ -33,8 +33,11 @@ public class CountInSubstring {
         int count = 0;
         for (String[] row : matrix) {
             for (String element : row) {
-                if(element.equals(substring)){
-                    count++;
+                String[] strings = element.split("");
+                for (String string : strings) {
+                    if(string.equals(substring)){
+                        count++;
+                    }
                 }
             }
         }

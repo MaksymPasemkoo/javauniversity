@@ -1,4 +1,4 @@
-package lab1.taskseventh;
+package labfirst.taskseventh;
 
 public class BankAccount {
     private final String accountNumber;

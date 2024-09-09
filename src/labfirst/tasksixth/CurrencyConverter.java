@@ -1,4 +1,4 @@
-package lab1.tasksixth;
+package labfirst.tasksixth;
 
 import java.util.HashMap;
 import java.util.Map;

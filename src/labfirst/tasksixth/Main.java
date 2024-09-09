@@ -1,4 +1,4 @@
-package lab1.tasksixth;
+package labfirst.tasksixth;
 import java.util.Scanner;
 
 public class Main {
