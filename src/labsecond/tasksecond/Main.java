@@ -11,6 +11,24 @@ public class Main {
         Shape pyramid = new Pyramid(5, 5, 5);
 
 
+        System.out.println("Triangle Area: " + triangle.calculateArea());
+        System.out.println("Triangle Volume: " + triangle.calculateVolume());
+
+        System.out.println("Square Area: " + square.calculateArea());
+        System.out.println("Square Volume: " + square.calculateVolume());
+
+        System.out.println("Rectangle Area: " + rectangle.calculateArea());
+        System.out.println("Rectangle Volume: " + rectangle.calculateVolume());
+
+        System.out.println("Cube Area: " + cube.calculateArea());
+        System.out.println("Cube Volume: " + cube.calculateVolume());
+
+        System.out.println("Circle Area: " + circle.calculateArea());
+        System.out.println("Circle Volume: " + circle.calculateVolume());
+
+        System.out.println("Sphere Area: " + sphere.calculateArea());
+        System.out.println("Sphere Volume: " + sphere.calculateVolume());
+
         System.out.println("Pyramid Area: " + pyramid.calculateArea());
         System.out.println("Pyramid Volume: " + pyramid.calculateVolume());
 
