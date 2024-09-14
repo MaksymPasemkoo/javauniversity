@@ -13,16 +13,16 @@ public class Main {
             Item item5 = new Item("Item5", 4);
             Item item6 = new Item("Item6", 6);
 
+
+
         try {
             warehouse.addItem(item1);
             warehouse.addItem(item2);
             warehouse.addItem(item3);
             warehouse.addItem(item4);
-//            warehouse.addItem(item5);
+            warehouse.addItem(item5);
 //            warehouse.addItem(item6);
 
-
-            System.out.println("Items in warehouse:");
             warehouse.getItems();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
