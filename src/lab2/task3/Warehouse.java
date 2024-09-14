@@ -4,7 +4,6 @@ package lab2.task3;
 public class Warehouse {
     private final Bin[] bins;
     private final int MAX_CAPACITY = 5;
-
     private int binCount;
 
     public Warehouse(){
