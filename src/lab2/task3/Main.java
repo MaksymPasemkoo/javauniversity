@@ -1,31 +1,39 @@
 package lab2.task3;
 
-
-
 public class Main {
     public static void main(String[] args) {
-            WarehouseManagement warehouse = new WarehouseManagement(10);
+        // Create a warehouse
+        Warehouse warehouse = new Warehouse();
 
-            Item item1 = new Item("Item1", 1);
-            Item item2 = new Item("Item2", 2);
-            Item item3 = new Item("Item3", 5);
-            Item item4 = new Item("Item4", 1);
-            Item item5 = new Item("Item5", 4);
-            Item item6 = new Item("Item6", 6);
+        Item item1 = new Item("TV", 50, 30, 10);
+        Item item2 = new Item("Fridge", 60, 70, 80);
+        Item item3 = new Item("Laptop", 15, 10, 1);
+        Item item4 = new Item("Washing Machine", 60, 80, 90);
+        Item item5 = new Item("Oven", 61, 60, 65);
+        Item item6 = new Item("Microwave", 20, 15, 15);
 
+        Bin bin1 = new Bin(55, 35, 15, item1);
+        Bin bin2 = new Bin(65, 75, 85, item2);
+        Bin bin3 = new Bin(20, 15, 5, item3);
+        Bin bin4 = new Bin(70, 85, 95, item4);
+        Bin bin5 = new Bin(60, 65, 70, item5);
+        Bin bin6 = new Bin(25, 20, 20, item6);
 
 
         try {
-            warehouse.addItem(item1);
-            warehouse.addItem(item2);
-            warehouse.addItem(item3);
-            warehouse.addItem(item4);
-            warehouse.addItem(item5);
-//            warehouse.addItem(item6);
+            warehouse.addItem(bin1);
+            warehouse.addItem(bin2);
+            warehouse.addItem(bin3);
+            warehouse.addItem(bin4);
+//            warehouse.addItem(bin5);
+//            warehouse.addItem(bin6);
 
             warehouse.getItems();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
         }
+
     }
 }
+

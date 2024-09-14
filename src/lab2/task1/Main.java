@@ -2,7 +2,7 @@ package lab2.task1;
 
 public class Main {
     public static void main(String[] args) {
-        Graph<String> graph = new Graph<>(false);
+        Graph<String> graph = new Graph<>(true);
         graph.addVertex("A");
         graph.addVertex("B");
         graph.addVertex("C");
