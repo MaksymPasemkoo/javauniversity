@@ -2,7 +2,6 @@ package lab2.task3;
 
 public class Main {
     public static void main(String[] args) {
-        // Create a warehouse
         Warehouse warehouse = new Warehouse();
 
         Item item1 = new Item("TV", 50, 30, 10);

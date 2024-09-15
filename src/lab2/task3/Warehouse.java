@@ -14,6 +14,7 @@ public class Warehouse {
         if(binCount >= MAX_CAPACITY){
             throw new RuntimeException("You reached maximum capacity.");
         }
+
         if(bin.getItem().getWidth() > bin.getWidth() || bin.getItem().getHeight() > bin.getHeight()
                 || bin.getItem().getLength() > bin.getLength()){
             throw new RuntimeException("Not enough space to contain " + bin.getItem().getName());
@@ -25,10 +26,10 @@ public class Warehouse {
         if(binCount == 0) return;
         System.out.println("Items in warehouse:");
         for (Bin bin : bins) {
-            if (bin.getItem() == null){
-                continue;
+            if (bin != null && bin.getItem() != null){
+                System.out.println(bin.getItem());
             }
-            System.out.println(bin.getItem());
+
         }
     }
 
