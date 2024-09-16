@@ -10,26 +10,31 @@ public class Warehouse {
         this.bins = new Bin[MAX_CAPACITY];
     }
 
-    public void addItem(final Bin bin){
+    public void addItem(final Item item,final Bin bin){
         if(binCount >= MAX_CAPACITY){
             throw new RuntimeException("You reached maximum capacity.");
         }
 
-        if(bin.getItem().getWidth() > bin.getWidth() || bin.getItem().getHeight() > bin.getHeight()
-                || bin.getItem().getLength() > bin.getLength()){
-            throw new RuntimeException("Not enough space to contain " + bin.getItem().getName());
+        if(item.getWidth() > bin.getWidth() || item.getHeight() > bin.getHeight()
+                || item.getLength() > bin.getLength()){
+            throw new RuntimeException("Not enough space to contain " + item.getName());
         }
         bins[binCount++] = bin;
+        bin.setItem(item);
+
     }
 
     public void getItems() {
         if(binCount == 0) return;
         System.out.println("Items in warehouse:");
         for (Bin bin : bins) {
-            if (bin != null && bin.getItem() != null){
-                System.out.println(bin.getItem());
+            if (bin != null) {
+                for (Item item : bin.getItems()) {
+                    if (item != null) {
+                        System.out.println(item);
+                    }
+                }
             }
-
         }
     }
 

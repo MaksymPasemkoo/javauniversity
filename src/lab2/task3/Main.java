@@ -11,21 +11,21 @@ public class Main {
         Item item5 = new Item("Oven", 61, 60, 65);
         Item item6 = new Item("Microwave", 20, 15, 15);
 
-        Bin bin1 = new Bin(55, 35, 15, item1);
-        Bin bin2 = new Bin(65, 75, 85, item2);
-        Bin bin3 = new Bin(20, 15, 5, item3);
-        Bin bin4 = new Bin(70, 85, 95, item4);
-        Bin bin5 = new Bin(60, 65, 70, item5);
-        Bin bin6 = new Bin(25, 20, 20, item6);
+        Bin bin1 = new Bin(55, 35, 15);
+        Bin bin2 = new Bin(65, 75, 85);
+        Bin bin3 = new Bin(20, 15, 5);
+        Bin bin4 = new Bin(70, 85, 95);
+        Bin bin5 = new Bin(60, 65, 70);
+        Bin bin6 = new Bin(25, 20, 20);
 
 
         try {
-            warehouse.addItem(bin1);
-            warehouse.addItem(bin2);
-            warehouse.addItem(bin3);
-            warehouse.addItem(bin4);
-//            warehouse.addItem(bin5);
-//            warehouse.addItem(bin6);
+            warehouse.addItem(item1,bin1);
+            warehouse.addItem(item2,bin2);
+            warehouse.addItem(item3,bin3);
+            warehouse.addItem(item4,bin4);
+//            warehouse.addItem(item5,bin5);
+//            warehouse.addItem(item6,bin6);
 
             warehouse.getItems();
 
