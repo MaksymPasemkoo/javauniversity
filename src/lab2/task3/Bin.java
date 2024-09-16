@@ -32,10 +32,6 @@ public class Bin {
         items[itemCount++] = item;
     }
 
-    public Item getItem(int index) {
-        return items[index];
-    }
-
     public Item[] getItems() {
         return items;
     }
