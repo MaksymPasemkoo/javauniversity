@@ -27,4 +27,13 @@ public class Client {
     public void decrementBalance(double balance) {
         this.balance -= balance;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "name='" + name + '\'' +
+                ", passwordId=" + passwordId +
+                ", balance=" + balance +
+                '}';
+    }
 }

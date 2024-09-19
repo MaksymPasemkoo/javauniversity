@@ -24,4 +24,13 @@ public class Reserve {
     public LocalDate getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return "Reserve{" +
+                "house=" + house +
+                ", client=" + client +
+                ", date=" + date +
+                '}';
+    }
 }

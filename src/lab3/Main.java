@@ -35,5 +35,7 @@ public class Main {
         System.out.println("-------------------------------------------------------------------");
         hotel.getHousesWithAmenities(HouseAmenitie.KITCHEN);
 
+        System.out.println("-------------------------------------------------------------------");
+        hotel.getListOfReservation();
     }
 }

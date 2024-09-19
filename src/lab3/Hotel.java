@@ -16,7 +16,7 @@ public class Hotel {
     private LocalDate localDate;
     private static double totalIncomeOfResidence = 0;
     private static double totalExpenseOfResidence = 0;
-    private final double discount = 0.2;
+
     public Hotel(final String hotelName){
         this.hotelName = hotelName;
         listOfReservation = new ArrayList<>();
@@ -45,6 +45,7 @@ public class Hotel {
 
             double priceForHouse = priceOfHouse(house);
             if(localDate.getMonth() == Month.NOVEMBER || localDate.getMonth() == Month.MARCH) {
+                double discount = 0.2;
                 totalIncomeOfResidence += priceForHouse * discount;
                 totalExpenseOfResidence += priceForHouse * discount;
 
@@ -189,7 +190,8 @@ public class Hotel {
         return hotelName;
     }
 
-    public List<Reserve> getListOfReservation() {
-        return listOfReservation;
+    public void getListOfReservation() {
+        System.out.println("List of reservation:");
+        listOfReservation.forEach(System.out::println);
     }
 }
