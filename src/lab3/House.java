@@ -7,17 +7,21 @@ import java.util.Scanner;
 public class House {
     private final List<HouseAmenitie> houseAmenities = new ArrayList<>();
     private final HouseCondition houseCondition;
+    private final int houseNumber;
     private int personInHouse = 0;
+    private final static List<House> listOfHouses = new ArrayList<>();
 
-    public House(final HouseCondition houseCondition){
+    public House(final HouseCondition houseCondition,final int houseNumber){
         this.houseCondition = houseCondition;
+        this.houseNumber = houseNumber;
+        includeAmenities();
+        listOfHouses.add(this);
     }
 
-    public void addAmenities(){
+    public void addAdditionalAmenities(){
         Scanner scanner = new Scanner(System.in);
         List<HouseAmenitie> listOfHouseAmenities = new ArrayList<>(HouseAmenitie.getListAmenities());
 
-        includeAmenities();
 
         System.out.println("List of amenities:");
         for (int i = 0; i < listOfHouseAmenities.size(); i++) {
@@ -94,48 +98,53 @@ public class House {
     }
 
     private void includeAmenities(){
-        if(houseCondition.getTextCondition().equals("economy")){
-            houseAmenities.add(HouseAmenitie.WIFI);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.MINI_KITCHEN);
-            personInHouse++;
-        }else if(houseCondition.getTextCondition().equals("standard")){
-            houseAmenities.add(HouseAmenitie.WIFI);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.MINI_KITCHEN);
-            houseAmenities.add(HouseAmenitie.CONDITIONER);
-            houseAmenities.add(HouseAmenitie.SAFE);
-            personInHouse++;
-        }else if(houseCondition.getTextCondition().equals("luxury")){
-            houseAmenities.add(HouseAmenitie.WIFI);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.KITCHEN);
-            houseAmenities.add(HouseAmenitie.CONDITIONER);
-            houseAmenities.add(HouseAmenitie.SAFE);
-            houseAmenities.add(HouseAmenitie.SMART_TV);
-            houseAmenities.add(HouseAmenitie.WASHING_MACHINE);
-            personInHouse += 2;
-        }
-        else if(houseCondition.getTextCondition().equals("president")){
-            houseAmenities.add(HouseAmenitie.WIFI);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.BED);
-            houseAmenities.add(HouseAmenitie.KITCHEN);
-            houseAmenities.add(HouseAmenitie.CONDITIONER);
-            houseAmenities.add(HouseAmenitie.SAFE);
-            houseAmenities.add(HouseAmenitie.SMART_TV);
-            houseAmenities.add(HouseAmenitie.WASHING_MACHINE);
-            houseAmenities.add(HouseAmenitie.TERRACE);
-            houseAmenities.add(HouseAmenitie.JACUZZI);
-            personInHouse += 3;
+        switch (houseCondition.getTextCondition()) {
+            case "economy" -> {
+                houseAmenities.add(HouseAmenitie.WIFI);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.MINI_KITCHEN);
+                personInHouse++;
+            }
+            case "standard" -> {
+                houseAmenities.add(HouseAmenitie.WIFI);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.MINI_KITCHEN);
+                houseAmenities.add(HouseAmenitie.CONDITIONER);
+                houseAmenities.add(HouseAmenitie.SAFE);
+                personInHouse++;
+            }
+            case "luxury" -> {
+                houseAmenities.add(HouseAmenitie.WIFI);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.KITCHEN);
+                houseAmenities.add(HouseAmenitie.CONDITIONER);
+                houseAmenities.add(HouseAmenitie.SAFE);
+                houseAmenities.add(HouseAmenitie.SMART_TV);
+                houseAmenities.add(HouseAmenitie.WASHING_MACHINE);
+                personInHouse += 2;
+            }
+            case "president" -> {
+                houseAmenities.add(HouseAmenitie.WIFI);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.BED);
+                houseAmenities.add(HouseAmenitie.KITCHEN);
+                houseAmenities.add(HouseAmenitie.CONDITIONER);
+                houseAmenities.add(HouseAmenitie.SAFE);
+                houseAmenities.add(HouseAmenitie.SMART_TV);
+                houseAmenities.add(HouseAmenitie.WASHING_MACHINE);
+                houseAmenities.add(HouseAmenitie.TERRACE);
+                houseAmenities.add(HouseAmenitie.JACUZZI);
+                personInHouse += 3;
+            }
         }
     }
 
     public void getAmenities(){
         System.out.println("House amenities:");
         houseAmenities.forEach(System.out::println);
+        System.out.println("-------------------------------------------------------------------");
         Hotel.getHotelAmenities();
     }
 
@@ -151,4 +160,17 @@ public class House {
         return personInHouse;
     }
 
+    public static List<House> getListOfHouses() {
+        return listOfHouses;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "house number=" + houseNumber +
+                ", house condition=" + houseCondition +
+                ", house amenities=" + houseAmenities +
+                ", person in house=" + personInHouse +
+                '}';
+    }
 }

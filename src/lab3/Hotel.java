@@ -11,7 +11,7 @@ public class Hotel {
     private final String hotelName;
     private final static List<HotelAmenitie> hotelAmenities = new ArrayList<>(HotelAmenitie.getListAmenities());
     private final List<Reserve> listOfReservation;
-    private final List<House> listOfHouses;
+    private final List<House> listOfReservedHouses;
     private final List<LocalDate> localDateList;
     private LocalDate localDate;
     private static double totalIncomeOfResidence = 0;
@@ -20,7 +20,7 @@ public class Hotel {
     public Hotel(final String hotelName){
         this.hotelName = hotelName;
         listOfReservation = new ArrayList<>();
-        listOfHouses = new ArrayList<>();
+        listOfReservedHouses = new ArrayList<>();
         localDateList = new ArrayList<>();
         localDate = LocalDate.now();
     }
@@ -37,10 +37,11 @@ public class Hotel {
             throw new BookingException("Format must be 'dd-MM-yyyy'");
         }
 
-        if(!localDateList.contains(localDate) && !listOfHouses.contains(house)) {
+        if(!localDateList.contains(localDate) && !listOfReservedHouses.contains(house)) {
             Reserve reserve = new Reserve(house,localDate,client);
             listOfReservation.add(reserve);
             localDateList.add(localDate);
+            listOfReservedHouses.add(house);
 
             double priceForHouse = priceOfHouse(house);
             if(localDate.getMonth() == Month.NOVEMBER || localDate.getMonth() == Month.MARCH) {
@@ -48,20 +49,22 @@ public class Hotel {
                 totalExpenseOfResidence += priceForHouse * discount;
 
                 System.out.println(localDate.getMonth().name().toLowerCase() + " discount 20%");
-                System.out.println("Cost of payment in hrn:");
-                System.out.println(priceForHouse);
+                System.out.println("Cost of payment in hrn:" + priceForHouse);
             }else{
                 totalIncomeOfResidence += priceOfHouse(house) ;
                 totalExpenseOfResidence += expenseOfHouse(house);
-                System.out.println("Cost of payment in hrn:");
-                System.out.println(priceForHouse);
+                System.out.println("Cost of payment in hrn:" + priceForHouse);
             }
+
+            System.out.println("Balance:" + client.getBalance());
             if(client.getBalance() >= priceForHouse) {
                 client.decrementBalance(priceForHouse);
+                System.out.println("Balance after payment:" + client.getBalance());
             }else{
                 throw new BookingException("Not enough money to pay.");
             }
             System.out.println("House was successfully reserved.");
+
         }
         else if(localDateList.contains(localDate)){
             throw new BookingException("The house is already reserved one this date.");
@@ -73,7 +76,7 @@ public class Hotel {
 
     public void calendarOfReservation(){
         if(localDate != null) {
-            System.out.println("You can book the house on the following days:");
+            System.out.println("You can book the house on the following days in " + localDate.getMonth().name().toLowerCase());
             for (int i = 1; i <= localDate.lengthOfMonth(); i++) {
                 LocalDate currentDay = localDate.withDayOfMonth(i);
                 if (localDateList.contains(currentDay)){
@@ -85,11 +88,9 @@ public class Hotel {
         else{
             System.out.println("All houses are reserved.");
         }
+        System.out.println();
     }
 
-    public List<Reserve> getListOfReservation() {
-        return listOfReservation;
-    }
 
     private double priceOfHouse(final House house){
         double price = 0;
@@ -166,20 +167,34 @@ public class Hotel {
         System.out.println("Total expense:" + totalExpenseOfResidence);
     }
 
+
+    public void getHousesWithAmenities(final HouseCondition houseCondition){
+        List<House> houseList = new ArrayList<>();
+        for(House house : House.getListOfHouses()) {
+            if(house.getHouseCondition().getTextCondition().equals(houseCondition.getTextCondition())){
+                houseList.add(house);
+            }
+        }
+        System.out.println("Houses with " + houseCondition.getTextCondition() + " condition:");
+        houseList.forEach(System.out::println);
+    }
+
+    public void getHousesWithAmenities(final HouseAmenitie houseAmenitie){
+        List<House> houseList = new ArrayList<>();
+        for(House house : House.getListOfHouses()){
+            if(house.getHouseAmenities().contains(houseAmenitie)){
+                houseList.add(house);
+            }
+        }
+        System.out.println("Houses that contains " + houseAmenitie.getAmenitiesText() + ":");
+        houseList.forEach(System.out::println);
+    }
+
     public String getHotelName() {
         return hotelName;
     }
 
-//    public List<House> getHousesWithAmenitie(final HouseCondition houseCondition){
-//        List<House> houseList = new ArrayList<>();
-//        for(House house : houseList) {
-//            switch (house.getHouseCondition().getTextCondition()) {
-//                case "economy" ->
-//                case "standard" ->
-//                case "luxury" ->
-//                case "president" ->
-//            }
-//        }
-//
-//    }
+    public List<Reserve> getListOfReservation() {
+        return listOfReservation;
+    }
 }
