@@ -169,23 +169,18 @@ public class Hotel {
 
 
     public void getHousesWithAmenities(final HouseCondition houseCondition){
-        List<House> houseList = new ArrayList<>();
-        for(House house : House.getListOfHouses()) {
-            if(house.getHouseCondition().getTextCondition().equals(houseCondition.getTextCondition())){
-                houseList.add(house);
-            }
-        }
+        List<House> houseList = House.getListOfHouses().stream()
+                .filter(house -> house.getHouseCondition().getTextCondition().equals(houseCondition.getTextCondition()))
+                .toList();
         System.out.println("Houses with " + houseCondition.getTextCondition() + " condition:");
         houseList.forEach(System.out::println);
     }
 
+
     public void getHousesWithAmenities(final HouseAmenitie houseAmenitie){
-        List<House> houseList = new ArrayList<>();
-        for(House house : House.getListOfHouses()){
-            if(house.getHouseAmenities().contains(houseAmenitie)){
-                houseList.add(house);
-            }
-        }
+        List<House> houseList = House.getListOfHouses().stream()
+                        .filter(house -> house.getHouseAmenities().contains(houseAmenitie))
+                                .toList();
         System.out.println("Houses that contains " + houseAmenitie.getAmenitiesText() + ":");
         houseList.forEach(System.out::println);
     }
