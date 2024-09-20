@@ -24,10 +24,6 @@ public class Hotel {
         localDateList = new ArrayList<>();
         localDate = LocalDate.now();
     }
-    public static void getHotelAmenities() {
-        System.out.println("Hotel amenities:");
-        hotelAmenities.forEach(elem -> System.out.println(elem.getTextAmenitie()));
-    }
 
     public void reserve(final House house,final String date,final Client client){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -168,6 +164,10 @@ public class Hotel {
         System.out.println("Total expense:" + totalExpenseOfResidence);
     }
 
+    public static void getHotelAmenities() {
+        System.out.println("Hotel amenities:");
+        hotelAmenities.forEach(elem -> System.out.println(elem.getTextAmenitie()));
+    }
 
     public void getHousesWithAmenities(final HouseCondition houseCondition){
         List<House> houseList = House.getListOfHouses().stream()
@@ -186,12 +186,13 @@ public class Hotel {
         houseList.forEach(System.out::println);
     }
 
-    public String getHotelName() {
-        return hotelName;
-    }
-
     public void getListOfReservation() {
         System.out.println("List of reservation:");
         listOfReservation.forEach(System.out::println);
     }
+
+    public String getHotelName() {
+        return hotelName;
+    }
+
 }
