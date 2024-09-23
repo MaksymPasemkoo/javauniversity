@@ -20,23 +20,17 @@ public class Warehouse {
             throw new RuntimeException("Not enough space to contain " + item.getName());
         }
         bins[binCount++] = bin;
-        bin.setItem(item);
-
+        Bin.setItem(item);
     }
 
     public void getItems() {
         if(binCount == 0) return;
         System.out.println("Items in warehouse:");
-        for (Bin bin : bins) {
-            if (bin != null) {
-                for (Item item : bin.getItems()) {
-                    if (item != null) {
-                        System.out.println(item);
-                    }
-                }
+        for (Item item : Bin.getItems()) {
+            if (item != null) {
+                System.out.println(item);
             }
         }
     }
-
 
 }

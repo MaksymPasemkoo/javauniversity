@@ -15,7 +15,7 @@ public class Main {
         Bin bin2 = new Bin(65, 75, 85);
         Bin bin3 = new Bin(20, 15, 5);
         Bin bin4 = new Bin(70, 85, 95);
-        Bin bin5 = new Bin(60, 65, 70);
+        Bin bin5 = new Bin(61, 65, 70);
         Bin bin6 = new Bin(25, 20, 20);
 
 
@@ -24,7 +24,7 @@ public class Main {
             warehouse.addItem(item2,bin2);
             warehouse.addItem(item3,bin3);
             warehouse.addItem(item4,bin4);
-//            warehouse.addItem(item5,bin5);
+            warehouse.addItem(item5,bin5);
 //            warehouse.addItem(item6,bin6);
 
             warehouse.getItems();
