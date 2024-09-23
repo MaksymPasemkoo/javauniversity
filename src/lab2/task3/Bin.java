@@ -4,11 +4,9 @@ public class Bin {
     private final int width;
     private final int height;
     private final int length;
-    private static final int MAX_CAPACITY = 5;
-    private static final Item[] items = new Item[MAX_CAPACITY];
-    private static int itemCount;
-
-
+    private final int MAX_CAPACITY = 5;
+    private final Item[] items = new Item[MAX_CAPACITY];
+    private int itemCount;
 
     public Bin(int width, int height, int length) {
         this.width = width;
@@ -28,11 +26,19 @@ public class Bin {
         return length;
     }
 
-    public static void setItem(Item item){
+    public void setItem(Item item){
         items[itemCount++] = item;
     }
 
-    public static Item[] getItems() {
+    public Item[] getItems() {
         return items;
+    }
+
+    public int getMAX_CAPACITY() {
+        return MAX_CAPACITY;
+    }
+
+    public int getItemCount() {
+        return itemCount;
     }
 }

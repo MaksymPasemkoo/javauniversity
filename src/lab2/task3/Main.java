@@ -11,22 +11,26 @@ public class Main {
         Item item5 = new Item("Oven", 61, 60, 65);
         Item item6 = new Item("Microwave", 20, 15, 15);
 
-        Bin bin1 = new Bin(55, 35, 15);
+        Item item7 = new Item("Cap", 20, 15, 15);
+        Item item8 = new Item("Phone", 20, 15, 15);
+        Item item9 = new Item("Charge", 20, 15, 15);
+
+        Bin bin1 = new Bin(61, 80, 90);
         Bin bin2 = new Bin(65, 75, 85);
-        Bin bin3 = new Bin(20, 15, 5);
-        Bin bin4 = new Bin(70, 85, 95);
-        Bin bin5 = new Bin(61, 65, 70);
-        Bin bin6 = new Bin(25, 20, 20);
+
 
 
         try {
             warehouse.addItem(item1,bin1);
-            warehouse.addItem(item2,bin2);
-            warehouse.addItem(item3,bin3);
-            warehouse.addItem(item4,bin4);
-            warehouse.addItem(item5,bin5);
-//            warehouse.addItem(item6,bin6);
+            warehouse.addItem(item2,bin1);
+            warehouse.addItem(item3,bin1);
+            warehouse.addItem(item4,bin1);
+            warehouse.addItem(item5,bin1);
+//            warehouse.addItem(item6,bin1);
 
+            warehouse.addItem(item7,bin2);
+            warehouse.addItem(item8,bin2);
+            warehouse.addItem(item9,bin2);
             warehouse.getItems();
 
         } catch (RuntimeException e) {

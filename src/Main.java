@@ -1,4 +1,4 @@
-import lab3.HouseCondition;
+
 
 public class Main  {
 

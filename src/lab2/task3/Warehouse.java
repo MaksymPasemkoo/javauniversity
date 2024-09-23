@@ -1,17 +1,18 @@
 package lab2.task3;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Warehouse {
-    private final Bin[] bins;
-    private final int MAX_CAPACITY = 5;
-    private int binCount;
+    private final List<Bin> bins;
 
     public Warehouse(){
-        this.bins = new Bin[MAX_CAPACITY];
+        bins = new ArrayList<>();
     }
 
     public void addItem(final Item item,final Bin bin){
-        if(binCount >= MAX_CAPACITY){
+        if(bin.getItemCount() >= bin.getMAX_CAPACITY()){
             throw new RuntimeException("You reached maximum capacity.");
         }
 
@@ -19,16 +20,20 @@ public class Warehouse {
                 || item.getLength() > bin.getLength()){
             throw new RuntimeException("Not enough space to contain " + item.getName());
         }
-        bins[binCount++] = bin;
-        Bin.setItem(item);
+        if(!bins.contains(bin)) {
+            bins.add(bin);
+        }
+        bin.setItem(item);
     }
 
     public void getItems() {
-        if(binCount == 0) return;
+        if(bins.isEmpty()) return;
         System.out.println("Items in warehouse:");
-        for (Item item : Bin.getItems()) {
-            if (item != null) {
-                System.out.println(item);
+        for (Bin bin : bins) {
+            for (Item item : bin.getItems()) {
+                if(item != null) {
+                    System.out.println(item);
+                }
             }
         }
     }
