@@ -2,7 +2,6 @@ package lab3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class House {
     private final List<HouseAmenitie> houseAmenities = new ArrayList<>();
@@ -16,59 +15,32 @@ public class House {
         includeAmenities();
     }
 
-    public void addAdditionalAmenities(){
-        Scanner scanner = new Scanner(System.in);
-        List<HouseAmenitie> listOfHouseAmenities = new ArrayList<>(HouseAmenitie.getListAmenities());
-
-        System.out.println("List of amenities:");
-        for (int i = 0; i < listOfHouseAmenities.size(); i++) {
-            System.out.println((i + 1) + ":" + listOfHouseAmenities.get(i));
-        }
-        System.out.println("Enter number from 1 to " + listOfHouseAmenities.size() +  " to add amenitie:");
-        String choice = scanner.next();
-
+    public void addAdditionalAmenities(HouseAmenitie choice){
         HouseAmenitie houseAmenitie = null;
-        switch(choice){
-            case "1":
-                houseAmenitie = HouseAmenitie.WIFI;
-                break;
-            case "2":
-                houseAmenitie = HouseAmenitie.KITCHEN;
-                break;
-            case "3":
-                houseAmenitie = HouseAmenitie.SMART_TV;
-                break;
-            case "4":
-                houseAmenitie = HouseAmenitie.CONDITIONER;
-                break;
-            case "5":
-                houseAmenitie = HouseAmenitie.WASHING_MACHINE;
-                break;
-            case "6":
-                houseAmenitie = HouseAmenitie.SAFE;
-                break;
-            case "7":
+        switch (choice) {
+            case WIFI -> houseAmenitie = HouseAmenitie.WIFI;
+            case KITCHEN -> houseAmenitie = HouseAmenitie.KITCHEN;
+            case SMART_TV -> houseAmenitie = HouseAmenitie.SMART_TV;
+            case CONDITIONER -> houseAmenitie = HouseAmenitie.CONDITIONER;
+            case WASHING_MACHINE -> houseAmenitie = HouseAmenitie.WASHING_MACHINE;
+            case SAFE -> houseAmenitie = HouseAmenitie.SAFE;
+            case BED -> {
                 houseAmenitie = HouseAmenitie.BED;
                 personInHouse++;
-                break;
-            case "8":
+            }
+            case CHILD_BED -> {
                 houseAmenitie = HouseAmenitie.CHILD_BED;
                 personInHouse++;
-                break;
-            case "9":
-                houseAmenitie = HouseAmenitie.TERRACE;
-                break;
-            case "10":
-                houseAmenitie = HouseAmenitie.JACUZZI;
-                break;
-            case "11":
-                houseAmenitie = HouseAmenitie.MINI_KITCHEN;
-                break;
-            default:
-                System.out.println("There is no choice like " + choice);
-                break;
+            }
+            case TERRACE -> houseAmenitie = HouseAmenitie.TERRACE;
+            case JACUZZI -> houseAmenitie = HouseAmenitie.JACUZZI;
+            case MINI_KITCHEN -> houseAmenitie = HouseAmenitie.MINI_KITCHEN;
+            default -> System.out.println("There is no choice like " + choice.getAmenitiesText());
         }
-        houseAmenities.add(houseAmenitie);
+        if(!houseAmenities.isEmpty()) {
+            System.out.println(houseAmenitie.getAmenitiesText() + " was successfully added.");
+            houseAmenities.add(houseAmenitie);
+        }
     }
 
 
@@ -116,11 +88,11 @@ public class House {
         }
     }
 
-    public void getAmenities(){
+    public void printAmenities(){
         System.out.println("House amenities:");
         houseAmenities.forEach(System.out::println);
         System.out.println("-------------------------------------------------------------------");
-        Hotel.getHotelAmenities();
+        Hotel.printHotelAmenities();
     }
 
     public HouseCondition getHouseCondition() {

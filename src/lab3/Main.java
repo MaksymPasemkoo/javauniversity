@@ -1,6 +1,5 @@
 package lab3;
 
-
 import java.time.Month;
 
 public class Main {
@@ -14,7 +13,7 @@ public class Main {
         Client client2 = new Client("Vlad",47129,28237);
         Client client3 = new Client("Marta",47129,28237);
 
-        house1.addAdditionalAmenities();
+        house1.addAdditionalAmenities(HouseAmenitie.BED);
         System.out.println("-------------------------------------------------------------------");
 
         hotel.reserve(house1,"13-02-2024",client1);
@@ -27,17 +26,18 @@ public class Main {
         hotel.reserve(house3,"13-03-2024",client3);
         System.out.println("-------------------------------------------------------------------");
 
-        house1.getAmenities();
+        house1.printAmenities();
         System.out.println("-------------------------------------------------------------------");
 
-//        Hotel.getIncomesAndExpense();
+        hotel.printIncomeAndExpense();
         System.out.println("-------------------------------------------------------------------");
 
-        hotel.getHousesWithAmenities(HouseCondition.ECONOMY);
+        hotel.printHousesWithAmenities(HouseCondition.ECONOMY);
         System.out.println("-------------------------------------------------------------------");
-        hotel.getHousesWithAmenities(HouseAmenitie.KITCHEN);
+        hotel.printHousesWithAmenities(HouseAmenitie.KITCHEN);
 
         System.out.println("-------------------------------------------------------------------");
-        hotel.getListOfReservation();
+        hotel.printListOfReservation();
+
     }
 }

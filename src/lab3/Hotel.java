@@ -26,30 +26,34 @@ public class Hotel {
             houses.add(house);
 
             double priceForHouse = priceOfHouse(house);
+
             if(localDate.getMonth() == Month.NOVEMBER || localDate.getMonth() == Month.MARCH) {
                 final double discountInPercentage = 20;
                 final double discount = discountInPercentage / 100;
-                final double totalPriceForHouseWithDiscount = priceForHouse + priceForHouse * discount;
-//                totalIncomeOfResidence += priceForHouse * discount;
-//                totalExpenseOfResidence += priceForHouse * discount;
+                final double totalPriceForHouseWithDiscount = priceForHouse - priceForHouse * discount;
 
                 System.out.println(localDate.getMonth().name().toLowerCase() + " discount "
                         + discountInPercentage + "%");
                 System.out.println("Cost of payment in hrn:" + totalPriceForHouseWithDiscount);
-            }else{
-//                totalIncomeOfResidence += priceOfHouse(house) ;
-//                totalExpenseOfResidence += expenseOfHouse(house);
-                System.out.println("Cost of payment in hrn:" + priceForHouse);
-            }
 
-            System.out.println("Balance:" + client.getBalance());
-            if(client.getBalance() >= priceForHouse) {
-                client.decrementBalance(priceForHouse);
-                System.out.println("Balance after payment:" + client.getBalance());
+                System.out.println("Balance:" + client.getBalance());
+                if(client.getBalance() >= totalPriceForHouseWithDiscount) {
+                    client.decrementBalance(totalPriceForHouseWithDiscount);
+                    System.out.println("Balance after payment:" + client.getBalance());
+                }else{
+                    throw new BookingException("Not enough money to pay.");
+                }
             }else{
-                throw new BookingException("Not enough money to pay.");
+                System.out.println("Cost of payment in hrn:" + priceForHouse);
+
+                System.out.println("Balance:" + client.getBalance());
+                if(client.getBalance() >= priceForHouse) {
+                    client.decrementBalance(priceForHouse);
+                    System.out.println("Balance after payment:" + client.getBalance());
+                }else{
+                    throw new BookingException("Not enough money to pay.");
+                }
             }
-            System.out.println("House was successfully reserved.");
 
         }
         else if(listOfClients.contains(client)){
@@ -93,17 +97,66 @@ public class Hotel {
                 .sum();
     }
 
+    private void printIncome(){
+        final double discount = 0.8;
+        double income = houses.stream()
+                .mapToDouble(
+                        house -> {
+                            Reserve reserve = getHouseFromReservation(house);
+                            Month reservationMonth = reserve.getDate().getMonth();
 
-    public static void getIncome(){
-        
+                            if(reservationMonth == Month.NOVEMBER || reservationMonth == Month.MARCH){
+                                return priceOfHouse(house) * discount;
+                            }else {
+                                return priceOfHouse(house);
+                            }
+                        }
+                )
+                .sum();
+        System.out.println("Income of hotel:");
+        System.out.println(income);
     }
 
-    public static void getHotelAmenities() {
+    private void printExpense(){
+        final double discount = 0.8;
+        double income = houses.stream()
+                .mapToDouble(
+                        house -> {
+                            Reserve reserve = getHouseFromReservation(house);
+                            Month reservationMonth = reserve.getDate().getMonth();
+
+                            if(reservationMonth == Month.NOVEMBER || reservationMonth == Month.MARCH){
+                                return expenseOfHouse(house) * discount;
+                            }else {
+                                return expenseOfHouse(house);
+                            }
+                        }
+                )
+                .sum();
+        System.out.println("Expense of hotel:");
+        System.out.println(income);
+    }
+
+
+    private Reserve getHouseFromReservation(final House house){
+        return listOfReservation.stream()
+                .filter(reserve -> reserve.getHouse().equals(house))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public void printIncomeAndExpense(){
+        printIncome();
+        System.out.println("-------------------------------------------------------------------");
+        printExpense();
+    }
+
+    public static void printHotelAmenities() {
         System.out.println("Hotel amenities:");
         hotelAmenities.forEach(elem -> System.out.println(elem.getTextAmenitie()));
     }
 
-    public void getHousesWithAmenities(final HouseCondition houseCondition){
+    public void printHousesWithAmenities(final HouseCondition houseCondition){
         List<House> houseList = houses.stream()
                 .filter(house -> house.getHouseCondition().getTextCondition().equals(houseCondition.getTextCondition()))
                 .toList();
@@ -111,8 +164,7 @@ public class Hotel {
         houseList.forEach(System.out::println);
     }
 
-
-    public void getHousesWithAmenities(final HouseAmenitie houseAmenitie){
+    public void printHousesWithAmenities(final HouseAmenitie houseAmenitie){
         List<House> houseList = houses.stream()
                         .filter(house -> house.getHouseAmenities().contains(houseAmenitie))
                                 .toList();
@@ -120,7 +172,7 @@ public class Hotel {
         houseList.forEach(System.out::println);
     }
 
-    public void getListOfReservation() {
+    public void printListOfReservation() {
         System.out.println("List of reservation:");
         listOfReservation.forEach(System.out::println);
     }
