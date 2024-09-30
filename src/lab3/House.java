@@ -8,10 +8,12 @@ public class House {
     private final HouseCondition houseCondition;
     private final int houseNumber;
     private int personInHouse = 0;
+    private final Hotel hotel;
 
-    public House(final HouseCondition houseCondition,final int houseNumber){
+    public House(final HouseCondition houseCondition, final int houseNumber, Hotel hotel){
         this.houseCondition = houseCondition;
         this.houseNumber = houseNumber;
+        this.hotel = hotel;
         includeAmenities();
     }
 
@@ -92,7 +94,7 @@ public class House {
         System.out.println("House amenities:");
         houseAmenities.forEach(System.out::println);
         System.out.println("-------------------------------------------------------------------");
-        Hotel.printHotelAmenities();
+        hotel.printHotelAmenities();
     }
 
     public HouseCondition getHouseCondition() {

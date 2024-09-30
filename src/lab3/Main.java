@@ -4,10 +4,11 @@ import java.time.Month;
 
 public class Main {
     public static void main(String[] args) {
-        House house1 = new House(HouseCondition.ECONOMY,1);
-        House house2 = new House(HouseCondition.ECONOMY,2);
-        House house3 = new House(HouseCondition.PRESIDENT,3);
         Hotel hotel = new Hotel("Dnipro");
+
+        House house1 = new House(HouseCondition.ECONOMY,1,hotel);
+        House house2 = new House(HouseCondition.ECONOMY,2, hotel);
+        House house3 = new House(HouseCondition.PRESIDENT,3,hotel);
 
         Client client1 = new Client("Maksym",4719,10000);
         Client client2 = new Client("Vlad",47129,28237);
